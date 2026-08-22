@@ -7,7 +7,7 @@ Portfólio pessoal responsivo desenvolvido como parte da 1ª Entrega da discipli
 ## Identificação do Aluno
 
 * **Nome:** Cintia Kamei
-* **GU:** `preencha aqui o seu GU`
+* **GU:** GU307921X
 * **Curso:** Análise e Desenvolvimento de Sistemas (2º Semestre)
 * **Instituição:** Instituto Federal de São Paulo (IFSP)
 * **E-mail:** cintia.kamei@aluno.ifsp.edu.br

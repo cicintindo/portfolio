@@ -322,9 +322,10 @@ section[id] {
   box-shadow: 0 10px 24px rgba(214, 122, 177, 0.15);
 }
 
-.skill-pill i {
+.skill-pill svg {
   display: block;
-  font-size: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
   color: var(--rosa-escuro);
   margin-bottom: 0.5rem;
 }
