@@ -109,7 +109,7 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 * Oito pílulas com ícone SVG e rótulo, dispostas em 4 colunas no desktop e 2 no mobile.
 
 **US04 — Projetos**
-* Três projetos listados: portal "O Mundo do Snow", site de Cafeteria e este Portfólio Pessoal.
+* Três projetos listados: portal "O Mundo do Snow", site "Cafeteria IFSP" (nota máxima) e este Portfólio Pessoal.
 * Cada projeto tem título, descrição e badges de tecnologias.
 * Não existem links mortos: o card do portfólio aponta para o repositório real; os demais exibem rótulos de status não clicáveis.
 
