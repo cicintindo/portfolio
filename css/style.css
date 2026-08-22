@@ -1,0 +1,484 @@
+/* ============================================================
+   Variáveis e Base
+   ============================================================ */
+   :root {
+    --rosa-claro: #fff0f3;
+    --rosa-medio: #f7aef8;
+    --rosa-escuro: #d67ab1;
+    --rosa-hover: #c4649f;
+    --borda-rosa: #ffe3e8;
+    --texto: #454049;
+    --texto-suave: #6f6875;
+    --branco: #ffffff;
+    --sombra-card: 0 10px 30px rgba(214, 122, 177, 0.10);
+    --sombra-card-hover: 0 18px 40px rgba(214, 122, 177, 0.18);
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--texto);
+    background-color: #fdfbfc;
+  }
+  
+  /* Espaçamento generoso entre seções */
+  section {
+    padding-top: clamp(5rem, 10vw, 8rem);
+    padding-bottom: clamp(5rem, 10vw, 8rem);
+  }
+  
+  /* Compensa a navbar fixa ao navegar por âncoras */
+  section[id] {
+    scroll-margin-top: 70px;
+  }
+  
+  .bg-pink-light {
+    background-color: var(--rosa-claro) !important;
+  }
+  
+  .text-pink-dark {
+    color: var(--rosa-escuro) !important;
+  }
+  
+  .link-pink {
+    color: var(--rosa-escuro);
+    text-decoration: none;
+    border-bottom: 1px dashed transparent;
+    transition: border-color 0.2s ease;
+  }
+  
+  .link-pink:hover {
+    color: var(--rosa-hover);
+    border-bottom-color: var(--rosa-hover);
+  }
+  
+  /* ============================================================
+     Hero (topo com imagem de fundo)
+     Para trocar o fundo: substitua assets/banner.jpg pela sua foto.
+     ============================================================ */
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 8rem 0 6rem;
+    background:
+      linear-gradient(180deg, rgba(255, 240, 243, 0.55) 0%, rgba(253, 251, 252, 0.92) 78%, #fdfbfc 100%),
+      url('../assets/banner.jpg') center / cover no-repeat,
+      radial-gradient(circle at 20% 20%, #ffe3e8 0%, transparent 55%),
+      linear-gradient(135deg, #fff0f3 0%, #f6ecfb 100%);
+  }
+  
+  .hero-texto {
+    animation: surgir 0.9s ease both;
+  }
+  
+  .hero-titulo {
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #3d3742;
+  }
+  
+  .hero-subtitulo {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    color: var(--texto-suave);
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+  
+  @media (min-width: 992px) {
+    .hero-subtitulo,
+    .hero-descricao {
+      margin-inline: 0;
+    }
+  }
+  
+  .hero-descricao {
+    color: var(--texto-suave);
+    max-width: 36rem;
+  }
+  
+  @keyframes surgir {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  /* Foto de perfil no hero */
+  .foto-moldura {
+    position: relative;
+    width: min(320px, 78vw);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-medio));
+    box-shadow: 0 24px 60px rgba(214, 122, 177, 0.35);
+    animation: surgir 1.1s ease 0.15s both;
+  }
+  
+  .foto-moldura::after {
+    content: '';
+    position: absolute;
+    inset: -22px;
+    border-radius: 50%;
+    border: 2px dashed rgba(214, 122, 177, 0.4);
+    animation: girar 40s linear infinite;
+  }
+  
+  @keyframes girar {
+    to { transform: rotate(360deg); }
+  }
+  
+  .foto-moldura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--branco);
+    display: block;
+  }
+  
+  /* Indicador de rolagem */
+  .scroll-hint {
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: var(--rosa-escuro);
+    opacity: 0.75;
+    animation: flutuar 1.8s ease-in-out infinite;
+  }
+  
+  @keyframes flutuar {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 10px); }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-texto,
+    .foto-moldura { animation: none; }
+    .foto-moldura::after { animation: none; }
+    .scroll-hint { animation: none; }
+    * { transition: none !important; }
+  }
+  
+  /* ============================================================
+     Navbar
+     ============================================================ */
+  .custom-nav {
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--borda-rosa);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    padding-block: 0.85rem;
+  }
+  
+  .custom-nav.nav-solida {
+    background-color: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 24px rgba(61, 55, 66, 0.08);
+  }
+  
+  .custom-nav .navbar-brand {
+    color: #3d3742;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-accent {
+    color: var(--rosa-escuro);
+  }
+  
+  .custom-nav .nav-link {
+    color: var(--texto-suave);
+    font-weight: 500;
+    padding-inline: 0.9rem;
+    position: relative;
+  }
+  
+  .custom-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 4px;
+    height: 2px;
+    background-color: var(--rosa-escuro);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+  
+  .custom-nav .nav-link:hover::after,
+  .custom-nav .nav-link.active::after {
+    transform: scaleX(1);
+  }
+  
+  .custom-nav .nav-link:hover,
+  .custom-nav .nav-link.active {
+    color: var(--rosa-escuro);
+  }
+  
+  /* ============================================================
+     Títulos de seção
+     ============================================================ */
+  .section-tag {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--rosa-escuro);
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-title {
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    color: #3d3742;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    position: relative;
+    display: inline-block;
+    letter-spacing: -0.01em;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    width: 56px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-medio));
+    bottom: -12px;
+    left: 2px;
+    border-radius: 4px;
+  }
+  
+  /* ============================================================
+     Cards
+     ============================================================ */
+  .card-custom {
+    border: none;
+    border-radius: 20px;
+    background-color: var(--branco);
+    box-shadow: var(--sombra-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+  }
+  
+  .card-custom:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra-card-hover);
+  }
+  
+/* Ícone em destaque (cards) */
+.icone-destaque {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  font-size: 1.9rem;
+  color: var(--rosa-escuro);
+  background-color: var(--rosa-claro);
+  border-radius: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.card-custom:hover .icone-destaque {
+  transform: translateY(-4px) scale(1.05);
+  background-color: var(--borda-rosa);
+}
+  
+  /* ============================================================
+     Pílulas de Competências
+     ============================================================ */
+  .skill-pill {
+    background-color: var(--branco);
+    border: 1px solid var(--borda-rosa);
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 16px;
+    font-weight: 500;
+    color: var(--texto);
+    box-shadow: 0 4px 14px rgba(61, 55, 66, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.5s ease, border-color 0.25s ease;
+  }
+  
+.skill-pill:hover {
+  transform: translateY(-4px);
+  border-color: var(--rosa-escuro);
+  box-shadow: 0 10px 24px rgba(214, 122, 177, 0.15);
+}
+
+.skill-pill i {
+  display: block;
+  font-size: 1.6rem;
+  color: var(--rosa-escuro);
+  margin-bottom: 0.5rem;
+}
+  
+  /* ============================================================
+     Badges e Botões
+     ============================================================ */
+  .badge-pink {
+    background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-medio));
+    color: var(--branco);
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
+  
+  .btn-pink {
+    background: linear-gradient(90deg, var(--rosa-escuro), var(--rosa-hover));
+    color: var(--branco);
+    border-radius: 12px;
+    padding: 0.65rem 1.6rem;
+    border: none;
+    box-shadow: 0 8px 20px rgba(214, 122, 177, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+  
+  .btn-pink:hover {
+    filter: brightness(1.06);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(214, 122, 177, 0.42);
+    color: var(--branco);
+  }
+  
+  .btn-outline-pink {
+    border: 2px solid var(--rosa-escuro);
+    color: var(--rosa-escuro);
+    border-radius: 12px;
+    padding: 0.6rem 1.6rem;
+    background-color: transparent;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-outline-pink:hover {
+    background-color: var(--rosa-escuro);
+    border-color: var(--rosa-escuro);
+    color: var(--branco);
+    transform: translateY(-2px);
+  }
+  
+  .btn-lg {
+    font-weight: 500;
+  }
+  
+  /* ============================================================
+     Contato
+     ============================================================ */
+  .contato-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+.contato-icone {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  color: var(--rosa-escuro);
+  background-color: var(--rosa-claro);
+  border-radius: 14px;
+}
+  
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--rosa-medio);
+    box-shadow: 0 0 0 0.25rem rgba(247, 174, 248, 0.25);
+  }
+  
+  .form-control {
+    border-radius: 12px;
+    border-color: #f0dfe3;
+  }
+  
+  .form-msg {
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+  }
+  
+  .form-msg-sucesso {
+    background-color: #eaf7ef;
+    border: 1px solid #bfe6cf;
+    color: #2e7d4f;
+  }
+  
+  .form-msg-erro {
+    background-color: #fdeeee;
+    border: 1px solid #f5c6c6;
+    color: #b34a4a;
+  }
+  
+  /* ============================================================
+     Rodapé e Botão Voltar ao Topo
+     ============================================================ */
+  .brand-footer {
+    font-size: 1.25rem;
+    color: #3d3742;
+    letter-spacing: -0.01em;
+  }
+  
+  .custom-footer {
+    border-top: 1px solid var(--borda-rosa);
+    background-color: var(--branco);
+    color: var(--texto-suave);
+  }
+  
+  #btnTopo {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 1050;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, filter 0.2s ease;
+  }
+  
+  #btnTopo.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  /* ============================================================
+     Animações de entrada (reveal) ao rolar
+     ============================================================ */
+  .section-tag,
+  .section-title,
+  .card-custom,
+  .skill-pill {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  
+  .section-tag.revelado,
+  .section-title.revelado,
+  .card-custom.revelado,
+  .skill-pill.revelado {
+    opacity: 1;
+    transform: none;
+  }
