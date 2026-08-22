@@ -55,7 +55,7 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 | Item | Registro |
 | :--- | :--- |
 | **Objetivo** | Obter visual profissional, com espaço para minha foto, imagem de fundo no início e mais espaçamento. |
-| **Texto enviado à IA** | *"quero um site profissional, que dê pra colocar minha foto, e imagem de fundo no inicio, quero mais espaçamento"* |
+| **Texto enviado à IA** | *"Quero um site profissional, que dê pra colocar minha foto, e imagem de fundo no inicio, quero mais espaçamento"* |
 | **Resultado obtido** | Hero em tela cheia (100vh) com imagem de fundo e overlay, foto em moldura circular com anel decorativo, seções com espaçamento fluido (`clamp()`), etiquetas de seção, botões novos e navbar translúcida. |
 | **Análise crítica** | Atendeu bem ao pedido; a imagem de fundo foi gerada automaticamente como placeholder, mas a moldura da foto ficou com detalhes que precisaram de ajuste fino. |
 | **Decisão tomada** | Mantive a estrutura e solicitei apenas correções pontuais de alinhamento (Prompt 05). Substituí o `banner.jpg` padrão pelo meu próprio arquivo quando necessário. |
@@ -75,8 +75,8 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 | Item | Registro |
 | :--- | :--- |
 | **Objetivo** | Verificar o projeto contra os critérios da AC02 e organizar o backlog. |
-| **Texto enviado à IA** | Colagem integral do enunciado da 1ª Entrega + link do board do Trello + *"O que falta no meu trello? meu readme está correto?"* |
-| **Resultado obtido** | Checklist completo: identifiquei links simulados (`href="#"`) nos projetos violando a restrição "sem funcionalidades que não funcionem", ausência do campo GU e do link publicado no README, documentação desatualizada e cards do Trello sem ID/MoSCoW/critérios. |
+| **Texto enviado à IA** | Colagem integral do enunciado da 1ª Entrega |
+| **Resultado obtido** | Checklist completo: identifiquei links simulados (`href="#"`) nos projetos violando a restrição "sem funcionalidades que não funcionem", ausência do campo GU e do link publicado no README, documentação desatualizada/MoSCoW/critérios. |
 | **Análise crítica** | A aplicação estava bonita, mas a rastreabilidade requisito → história → backlog estava incompleta, o que é critério explícito de avaliação. |
 | **Decisão tomada** | Corrigir os links mortos, atualizar README e esta documentação, padronizar os cards do Trello diretamente no board e remover o card fora de escopo ("Cadastrar dados pessoais" — CRUD/banco não existe neste projeto estático). |
 
@@ -109,7 +109,7 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 * Oito pílulas com ícone SVG e rótulo, dispostas em 4 colunas no desktop e 2 no mobile.
 
 **US04 — Projetos**
-* Três projetos listados: portal "O Mundo do Snow", site "Cafeteria IFSP" (nota máxima) e este Portfólio Pessoal.
+* Três projetos listados: portal "O Mundo do Snow", site de Cafeteria e este Portfólio Pessoal.
 * Cada projeto tem título, descrição e badges de tecnologias.
 * Não existem links mortos: o card do portfólio aponta para o repositório real; os demais exibem rótulos de status não clicáveis.
 
