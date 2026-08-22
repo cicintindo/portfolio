@@ -78,7 +78,7 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 | **Texto enviado à IA** | Colagem integral do enunciado da 1ª Entrega + link do board do Trello + *"O que falta no meu trello? meu readme está correto?"* |
 | **Resultado obtido** | Checklist completo: identifiquei links simulados (`href="#"`) nos projetos violando a restrição "sem funcionalidades que não funcionem", ausência do campo GU e do link publicado no README, documentação desatualizada e cards do Trello sem ID/MoSCoW/critérios. |
 | **Análise crítica** | A aplicação estava bonita, mas a rastreabilidade requisito → história → backlog estava incompleta, o que é critério explícito de avaliação. |
-| **Decisão tomada** | Corrigir os links mortos, atualizar README e esta documentação, padronizar os cards do Trello (`docs/trello-backlog.md`) e remover o card fora de escopo ("Cadastrar dados pessoais" — CRUD/banco não existe neste projeto estático). |
+| **Decisão tomada** | Corrigir os links mortos, atualizar README e esta documentação, padronizar os cards do Trello diretamente no board e remover o card fora de escopo ("Cadastrar dados pessoais" — CRUD/banco não existe neste projeto estático). |
 
 ---
 
@@ -162,7 +162,7 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 
 ## 7. Backlog Acionável
 
-Gestão diária do backlog no Trello: https://trello.com/b/lRmxaCj5/portfolio-pessoal (cards prontos para cópia em `docs/trello-backlog.md`).
+Gestão diária do backlog no Trello: https://trello.com/b/lRmxaCj5/portfolio-pessoal (board espelha a tabela abaixo).
 
 | ID | Item do Backlog | História | MoSCoW | Critérios de Aceitação | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |

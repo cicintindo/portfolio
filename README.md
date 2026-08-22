@@ -68,8 +68,7 @@ portfolio/
 │   ├── banner.jpg      # Imagem de fundo do topo
 │   └── foto.jpg        # Foto de perfil
 ├── docs/
-│   ├── documentacao.md     # Documentação obrigatória (7 seções)
-│   └── trello-backlog.md   # Cards prontos para o board do Trello
+│   └── documentacao.md     # Documentação obrigatória (7 seções)
 └── README.md           # Este arquivo
 ```
 
