@@ -2,7 +2,7 @@
 
 Board: https://trello.com/b/lRmxaCj5/portfolio-pessoal
 
-Como usar: copie o **título** de cada card e cole no campo de título do Trello; copie o **corpo** e cole na descrição. Crie as etiquetas `Must have`, `Should have`, `Could have` e `Won't have now` (cores sugeridas: vermelho, amarelo, verde e cinza) e aplique a correspondente. Depois mova os cards para a coluna correta (`Done` para os concluídos, `Doing` para BL15, `Backlog`/`To Do` para BL16).
+Como usar: copie o **título** de cada card e cole no campo de título do Trello; copie o **corpo** e cole na descrição. Crie as etiquetas `Must have`, `Should have`, `Could have` e `Won't have now` (cores sugeridas: vermelho, amarelo, verde e cinza) e aplique a correspondente. Depois mova os cards para a coluna correta (`Done` para os concluídos, `Backlog`/`To Do` para BL16).
 
 Sugestão: exclua o card "Cadastrar dados pessoais" (fala de CRUD/banco de dados, fora do escopo deste projeto estático) e arquive a lista "Guia de introdução ao Trello".
 
@@ -166,7 +166,7 @@ Sugestão: exclua o card "Cadastrar dados pessoais" (fala de CRUD/banco de dados
 - **Critérios de aceitação:**
   - Repositório sincronizado com a versão final do código.
   - Página acessível publicamente em https://cicintindo.github.io/portfolio/
-- **Status:** Em andamento (Doing) — falta ativar Settings → Pages no GitHub
+- **Status:** Concluído (Done) — página pública ativa em https://cicintindo.github.io/portfolio/
 
 ---
 

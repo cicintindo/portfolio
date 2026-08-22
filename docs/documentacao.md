@@ -180,11 +180,11 @@ Gestão diária do backlog no Trello: https://trello.com/b/lRmxaCj5/portfolio-pe
 | BL12 | Adicionar destaque da seção ativa no menu | US08 | Should have | Link ativo acompanha a rolagem | Concluído |
 | BL13 | Adicionar botão flutuante "voltar ao topo" | US08 | Should have | Aparece após ~400px; retorno suave | Concluído |
 | BL14 | Substituir emojis por ícones SVG profissionais | US08 | Could have | Zero emojis no corpo; SVG inline sem libs extras | Concluído |
-| BL15 | Publicar o portfólio no GitHub Pages | US07 | Must have | Página pública em cicintindo.github.io/portfolio | Em andamento |
+| BL15 | Publicar o portfólio no GitHub Pages | US07 | Must have | Página pública em cicintindo.github.io/portfolio | Concluído |
 | BL16 | Enviar mensagens do formulário por servidor | US06 | Won't have now | Integração backend/e-mail (fora do escopo estático) | Não iniciado |
 
 ---
 
 ## Rastreabilidade
 
-Definição (seção 1) → Histórias (seção 3) → Critérios (seção 4) → MoSCoW (seção 5) → MVP (seção 6) → Backlog (seção 7) → Aplicação entregue. Todo item Must have do MVP está implementado no código; itens marcados "Não iniciado"/"Em andamento" estão explicitamente registrados com seu status real.
+Definição (seção 1) → Histórias (seção 3) → Critérios (seção 4) → MoSCoW (seção 5) → MVP (seção 6) → Backlog (seção 7) → Aplicação entregue. Todo item Must have e Should have do MVP está implementado no código e publicado em https://cicintindo.github.io/portfolio/; o único item não implementado (BL16, Won't have now) está explicitamente registrado como fora do escopo desta entrega.
