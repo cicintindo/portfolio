@@ -103,17 +103,19 @@ Os prompts abaixo tiveram influência relevante no planejamento e na implementa�
 
 **US02 — Formação e experiências**
 * Três cards de formação (ADS/IFSP, Técnico em Administração, Engenharia Ambiental) com título, status e descrição.
-* Dois cards de experiências com período/origem identificáveis.
+* Três blocos de experiência — convivência com analista de sistemas (pai), vendas freelance nos fins de semana e práticas acadêmicas no IFSP — cada um com origem/período e descrição.
 
 **US03 — Competências**
 * Oito pílulas com ícone SVG e rótulo, dispostas em 4 colunas no desktop e 2 no mobile.
 
 **US04 — Projetos**
+* Três projetos listados: portal "O Mundo do Snow", site de Cafeteria e este Portfólio Pessoal.
 * Cada projeto tem título, descrição e badges de tecnologias.
-* Não existem links mortos: o card principal aponta para o repositório real e o secundário exibe rótulo de status não clicável.
+* Não existem links mortos: o card do portfólio aponta para o repositório real; os demais exibem rótulos de status não clicáveis.
 
 **US05 — Hobbies e viagens**
-* Três cards de hobbies com ícone centralizado e um card de viagens com título e texto.
+* Três cards de hobbies com ícone centralizado.
+* Card "Refúgio no Litoral" com ícone e texto, mais quatro destinos visitados visíveis: São Paulo, Bahia, Ceará e Paraná.
 
 **US06 — Formulário de contato**
 * Campos Nome, E-mail e Mensagem são obrigatórios.
@@ -171,10 +173,10 @@ Gestão diária do backlog no Trello: https://trello.com/b/lRmxaCj5/portfolio-pe
 | BL03 | Criar hero em tela cheia com imagem de fundo e CTAs | US01 | Could have | 100vh com `banner.jpg`; botões rolam às seções | Concluído |
 | BL04 | Construir cards da formação acadêmica | US02 | Must have | 3 formações com título, status e descrição | Concluído |
 | BL05 | Criar painel de competências em pílulas | US03 | Must have | 8 pílulas com SVG, 4 colunas desktop / 2 mobile | Concluído |
-| BL06 | Implementar listagem de projetos com links válidos | US04 | Must have | Título, descrição, badges; zero links mortos | Concluído |
-| BL07 | Montar blocos de experiências relevantes | US02 | Should have | 2 cards com período/origem e descrição | Concluído |
+| BL06 | Implementar listagem de projetos com links válidos | US04 | Must have | 3 projetos; título, descrição e badges; zero links mortos | Concluído |
+| BL07 | Montar blocos de experiências relevantes | US02 | Should have | 3 blocos (pai analista, vendas freelance, IFSP) com origem/período | Concluído |
 | BL08 | Criar cards de hobbies e lazer | US05 | Should have | 3 cards com ícone centralizado e descrição | Concluído |
-| BL09 | Criar card de viagens realizadas | US05 | Should have | Card "Refúgio no Litoral" com ícone e texto | Concluído |
+| BL09 | Criar seção de viagens realizadas | US05 | Should have | Card Refúgio no Litoral + destinos SP, BA, CE e PR visíveis | Concluído |
 | BL10 | Desenvolver formulário com validação em JavaScript | US06 | Must have | Erros/sucesso inline; campos obrigatórios; e-mail válido | Concluído |
 | BL11 | Implementar menu responsivo com rolagem suave | US07 | Must have | Hambúrguer <992px; âncoras suaves; menu fecha ao clicar | Concluído |
 | BL12 | Adicionar destaque da seção ativa no menu | US08 | Should have | Link ativo acompanha a rolagem | Concluído |
