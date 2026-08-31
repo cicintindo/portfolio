@@ -1,19 +1,44 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   // ============================================================
-  // Curtain de carregamento — mostra uma vez
+  // Splash cinematográfico de abertura
+  // Mostra "Apresentando Cintia Kamei" e só revela o site
+  // quando o usuário clica em ENTRAR (ou após tocar em mobile).
   // ============================================================
-  const curtain = document.getElementById('curtain');
-  const loaded = sessionStorage.getItem('curtainShown');
-  if (loaded) {
-    if (curtain) curtain.remove();
-  } else if (curtain) {
-    sessionStorage.setItem('curtainShown', '1');
+  var splash = document.getElementById('splash');
+  var splashEnter = document.getElementById('splashEnter');
+
+  // Bloqueia o scroll enquanto o splash estiver aberto
+  document.body.style.overflow = 'hidden';
+
+  function fecharSplash() {
+    if (!splash) { document.body.style.overflow = ''; return; }
+    splash.classList.add('done');
+    document.body.classList.add('entered');
+    document.body.style.overflow = '';
     window.setTimeout(function () {
-      curtain.classList.add('done');
-      window.setTimeout(function () { curtain.remove(); }, 1000);
-    }, 500);
+      if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
+    }, 1000);
   }
+
+  if (splashEnter) {
+    splashEnter.addEventListener('click', fecharSplash);
+  } else if (splash) {
+    // Mobile / sem JS para interação: fecha após um tempo
+    window.setTimeout(fecharSplash, 2800);
+  }
+
+  // Controles de acessibilidade: fecha com Enter, se for o foco
+  if (splashEnter) {
+    splashEnter.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') fecharSplash();
+    });
+  }
+
+  // Fallback: se por algum motivo o usuário não clicar, nunca trava
+  window.setTimeout(function () {
+    if (splash && !splash.classList.contains('done')) fecharSplash();
+  }, 20000);
 
   // ============================================================
   // Fallback de fotos (caso assets/foto.jpg não exista)
