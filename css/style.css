@@ -469,10 +469,8 @@ a { text-decoration: none; color: inherit; }
 .hero-name { display: block; }
 .hero-name .line {
   display: inline-block;
-  overflow: hidden;
-  font-size: 0.9em;
-  line-height: 1.24em;
-  padding-bottom: 0.12em;
+  font-size: 0.96em;
+  line-height: 1.18em;
   opacity: 0;
   animation: hero-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(var(--i) * 0.1s);
@@ -545,23 +543,6 @@ a { text-decoration: none; color: inherit; }
 .w-full { width: 100%; }
 
 /* Meta do hero (rodapé da tela inicial) */
-.hero-meta {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 90px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 0.62rem;
-  letter-spacing: 0.22em;
-  color: var(--texto-suave);
-  opacity: 0;
-  animation: hero-fade 1s 2.2s both;
-  z-index: 2;
-}
-.hero-meta-dot { color: var(--rosa-escuro); }
-@keyframes hero-fade { from { opacity: 0 } to { opacity: 1 } }
 
 /* Foto hero */
 .hero-photo { position: relative; z-index: 2; display: flex; justify-content: center; opacity: 0; animation: rise 0.9s 1.3s forwards; }
