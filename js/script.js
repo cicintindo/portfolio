@@ -1,108 +1,214 @@
-// Aguarda o carregamento completo do documento HTML
 document.addEventListener('DOMContentLoaded', function () {
 
   // ============================================================
-  // 1. Fallback da foto de perfil (caso assets/foto.jpg não exista)
+  // Curtain de carregamento — mostra uma vez
   // ============================================================
-  const foto = document.getElementById('fotoPerfil');
-  if (foto) {
-    const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">' +
-      '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-      '<stop offset="0" stop-color="#ffe3e8"/><stop offset="1" stop-color="#f6ecfb"/>' +
-      '</linearGradient></defs>' +
-      '<rect width="100%" height="100%" fill="url(#g)"/>' +
-      '<text x="50%" y="55%" font-family="Poppins, Arial, sans-serif" font-size="200" font-weight="600" ' +
-      'fill="#d67ab1" text-anchor="middle" dominant-baseline="middle">CK</text></svg>'
-    );
-    foto.addEventListener('error', function () {
-      foto.src = fallback;
+  const curtain = document.getElementById('curtain');
+  const loaded = sessionStorage.getItem('curtainShown');
+  if (loaded) {
+    if (curtain) curtain.remove();
+  } else if (curtain) {
+    sessionStorage.setItem('curtainShown', '1');
+    window.setTimeout(function () {
+      curtain.classList.add('done');
+      window.setTimeout(function () { curtain.remove(); }, 1000);
+    }, 500);
+  }
+
+  // ============================================================
+  // Fallback de fotos (caso assets/foto.jpg não exista)
+  // ============================================================
+  const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">' +
+    '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+    '<stop offset="0" stop-color="#ffe3e8"/><stop offset="1" stop-color="#f6ecfb"/>' +
+    '</linearGradient></defs>' +
+    '<rect width="100%" height="100%" fill="url(#g)"/>' +
+    '<text x="50%" y="55%" font-family="Poppins, Arial, sans-serif" font-size="200" font-weight="600" ' +
+    'fill="#d67ab1" text-anchor="middle" dominant-baseline="middle">CK</text></svg>'
+  );
+  document.querySelectorAll('img').forEach(function (img) {
+    img.addEventListener('error', function () { img.src = fallback; });
+  });
+
+  // ============================================================
+  // Cursor customizado
+  // ============================================================
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const reducer = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch = window.matchMedia('(hover: none)').matches;
+
+  if (dot && ring && !reducer && !touch) {
+    let mx = -100, my = -100, rx = -100, ry = -100;
+
+    document.addEventListener('mousemove', function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+
+    (function ringLoop() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(ringLoop);
+    })();
+
+    document.querySelectorAll('a, button, .magnetic-btn, .skill-tag, .contact-item').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { ring.classList.add('hovering'); });
+      el.addEventListener('mouseleave', function () { ring.classList.remove('hovering'); });
     });
   }
 
   // ============================================================
-  // 2. Animações de entrada (reveal) ao rolar a página
-  // ============================================================
-  const elementosReveal = document.querySelectorAll('.section-tag, .section-title, .card-custom, .skill-pill');
-  if ('IntersectionObserver' in window && elementosReveal.length > 0) {
-    const observer = new IntersectionObserver(function (entradas) {
-      entradas.forEach(function (entrada) {
-        if (entrada.isIntersecting) {
-          entrada.target.classList.add('revelado');
-          observer.unobserve(entrada.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    elementosReveal.forEach(function (el) { observer.observe(el); });
-  } else {
-    elementosReveal.forEach(function (el) { el.classList.add('revelado'); });
-  }
-
-  // ============================================================
-  // 3. Navbar ganha sombra ao rolar + link ativo (scrollspy)
+  // Navbar: sombra ao rolar + link ativo + menu mobile
   // ============================================================
   const nav = document.getElementById('mainNav');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navToggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navLinks');
   const secoes = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.custom-nav .nav-link');
 
   function aoRolar() {
-    if (nav) {
-      nav.classList.toggle('nav-solida', window.scrollY > 30);
-    }
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
 
-    const posicaoScroll = window.scrollY + 140;
-    let idAtual = '';
-    secoes.forEach(function (secao) {
-      if (secao.offsetTop <= posicaoScroll) {
-        idAtual = secao.getAttribute('id');
-      }
+    const pos = window.scrollY + 120;
+    let atual = '';
+    secoes.forEach(function (s) {
+      if (s.offsetTop <= pos) atual = s.id;
     });
-    navLinks.forEach(function (link) {
-      link.classList.toggle('active', link.getAttribute('href') === '#' + idAtual);
+    navLinks.forEach(function (l) {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + atual);
     });
   }
   window.addEventListener('scroll', aoRolar, { passive: true });
   aoRolar();
 
-  // ============================================================
-  // 4. Fechar o menu mobile automaticamente ao clicar em um link
-  // ============================================================
-  const collapseEl = document.getElementById('navbarNav');
-  document.querySelectorAll('#navbarNav a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (window.innerWidth < 992 && typeof bootstrap !== 'undefined' && collapseEl) {
-        bootstrap.Collapse.getOrCreateInstance(collapseEl).hide();
-      }
+  function fecharMenu() {
+    if (menu) menu.classList.remove('open');
+    if (navToggle) navToggle.classList.remove('active');
+    document.body.classList.remove('menu-open');
+  }
+
+  if (navToggle && menu) {
+    navToggle.addEventListener('click', function () {
+      menu.classList.toggle('open');
+      navToggle.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
     });
+  }
+  navLinks.forEach(function (l) {
+    l.addEventListener('click', fecharMenu);
   });
 
   // ============================================================
-  // 5. Botão "Voltar ao Topo"
+  // Botão voltar ao topo
   // ============================================================
   const btnTopo = document.getElementById('btnTopo');
   if (btnTopo) {
     window.addEventListener('scroll', function () {
-      btnTopo.classList.toggle('visivel', window.scrollY > 400);
+      btnTopo.classList.toggle('visivel', window.scrollY > 500);
     }, { passive: true });
-
     btnTopo.addEventListener('click', function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
   // ============================================================
-  // 6. Formulário de contato com validação e mensagens inline
+  // Botões magnéticos
   // ============================================================
-  const formContato = document.getElementById('formContato');
+  if (!reducer && !touch) {
+    document.querySelectorAll('.magnetic-btn').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) * 0.25;
+        var y = (e.clientY - r.top - r.height / 2) * 0.25;
+        btn.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () {
+        btn.style.transform = '';
+      });
+    });
+  }
+
+  // ============================================================
+  // Pétalas de sakura no hero
+  // ============================================================
+  const blossomsContainer = document.getElementById('blossoms');
+  if (blossomsContainer && !reducer) {
+    var total = window.innerWidth < 768 ? 15 : 30;
+    for (var i = 0; i < total; i++) {
+      var p = document.createElement('span');
+      p.className = 'blossom';
+      var left = Math.random() * 100;
+      var size = 7 + Math.random() * 10;
+      var dur = 9 + Math.random() * 12;
+      var delay = Math.random() * 12;
+      var sway = (Math.random() - 0.5) * 60;
+      p.style.left = left + '%';
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.animation = 'drift ' + dur + 's linear infinite';
+      p.style.animationDelay = delay + 's';
+      p.style.setProperty('--sway', sway + 'px');
+      blossomsContainer.appendChild(p);
+    }
+  }
+
+  // ============================================================
+  // Parallax suave nas fotos
+  // ============================================================
+  if (!reducer) {
+    document.querySelectorAll('.photo-wrapper img, .about-photo img').forEach(function (img) {
+      var wrap = img.closest('.photo-wrapper, .about-photo');
+      window.addEventListener('scroll', function () {
+        var y = window.scrollY;
+        var r = wrap.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          var offset = (window.innerHeight / 2 - (r.top + r.height / 2)) * 0.05;
+          img.style.transform = 'translateY(' + offset + 'px)';
+        }
+      }, { passive: true });
+    });
+  }
+
+  // ============================================================
+  // Reveal ao rolar
+  // ============================================================
+  var revealEls = document.querySelectorAll(
+    '.section-title, .section-label, .about-desc, .about-stats, .about-visual, .edu-card, .project-card, .skill-tag, .exp-item, .hobby-card, .travel-featured, .travel-card, .contact-item, .contact-grid'
+  );
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
+        if (entry.isIntersecting) {
+          var delay = entry.target.style.getPropertyValue('--delay') || 0;
+          entry.target.style.transitionDelay = (parseFloat(delay) * 0.12) + 's';
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { el.classList.add('reveal'); revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('revealed'); });
+  }
+
+  // ============================================================
+  // Formulário de contato
+  // ============================================================
+  var formContato = document.getElementById('formContato');
   if (formContato) {
     formContato.addEventListener('submit', function (event) {
       event.preventDefault();
-
-      const nome = document.getElementById('nome').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const mensagem = document.getElementById('mensagem').value.trim();
-      const msgBox = document.getElementById('formMsg');
-      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      var nome = document.getElementById('nome').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var mensagem = document.getElementById('mensagem').value.trim();
+      var msgBox = document.getElementById('formMsg');
+      var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
       msgBox.classList.remove('d-none', 'form-msg-sucesso', 'form-msg-erro');
 
@@ -111,16 +217,13 @@ document.addEventListener('DOMContentLoaded', function () {
         msgBox.textContent = 'Atenção: preencha todos os campos do formulário.';
         return;
       }
-
       if (!emailValido) {
         msgBox.classList.add('form-msg-erro');
         msgBox.textContent = 'Atenção: o e-mail informado não parece válido. Verifique e tente novamente.';
         return;
       }
-
       msgBox.classList.add('form-msg-sucesso');
-      msgBox.textContent = `Mensagem enviada com sucesso. Obrigada pelo contato, ${nome}! Responderei em breve no e-mail informado.`;
-
+      msgBox.textContent = 'Mensagem enviada com sucesso. Obrigada pelo contato, ' + nome + '! Responderei em breve no e-mail informado.';
       formContato.reset();
     });
   }
