@@ -57,38 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ============================================================
-  // Cursor customizado
-  // ============================================================
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  const reducer = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const touch = window.matchMedia('(hover: none)').matches;
-
-  if (dot && ring && !reducer && !touch) {
-    let mx = -100, my = -100, rx = -100, ry = -100;
-
-    document.addEventListener('mousemove', function (e) {
-      mx = e.clientX;
-      my = e.clientY;
-      dot.style.left = mx + 'px';
-      dot.style.top = my + 'px';
-    });
-
-    (function ringLoop() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top = ry + 'px';
-      requestAnimationFrame(ringLoop);
-    })();
-
-    document.querySelectorAll('a, button, .magnetic-btn, .skill-tag, .contact-item').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { ring.classList.add('hovering'); });
-      el.addEventListener('mouseleave', function () { ring.classList.remove('hovering'); });
-    });
-  }
-
-  // ============================================================
   // Navbar: sombra ao rolar + link ativo + menu mobile
   // ============================================================
   const nav = document.getElementById('mainNav');
@@ -145,6 +113,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   // Botões magnéticos
   // ============================================================
+  const reducer = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const touch = window.matchMedia('(hover: none)').matches;
   if (!reducer && !touch) {
     document.querySelectorAll('.magnetic-btn').forEach(function (btn) {
       btn.addEventListener('mousemove', function (e) {
@@ -187,8 +157,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Parallax suave nas fotos
   // ============================================================
   if (!reducer) {
-    document.querySelectorAll('.photo-wrapper img, .about-photo img').forEach(function (img) {
-      var wrap = img.closest('.photo-wrapper, .about-photo');
+    document.querySelectorAll('.about-photo img').forEach(function (img) {
+      var wrap = img.closest('.about-photo');
       window.addEventListener('scroll', function () {
         var y = window.scrollY;
         var r = wrap.getBoundingClientRect();
