@@ -11,11 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // Bloqueia o scroll enquanto o splash estiver aberto
   document.body.style.overflow = 'hidden';
 
+  var fechadoPorTeclado = false;
+  var navBrand = document.querySelector('.nav-brand');
+
   function fecharSplash() {
     if (!splash) { document.body.style.overflow = ''; return; }
     splash.classList.add('done');
     document.body.classList.add('entered');
     document.body.style.overflow = '';
+    if (fechadoPorTeclado && navBrand) navBrand.focus();
     window.setTimeout(function () {
       if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
     }, 1000);
@@ -28,12 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
     window.setTimeout(fecharSplash, 2800);
   }
 
-  // Controles de acessibilidade: fecha com Enter, se for o foco
+  // Controles de acessibilidade: fecha com Enter (no foco) ou Escape
   if (splashEnter) {
     splashEnter.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') fecharSplash();
+      if (e.key === 'Enter') {
+        fechadoPorTeclado = true;
+        fecharSplash();
+      }
     });
   }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && splash && !splash.classList.contains('done')) {
+      fechadoPorTeclado = true;
+      fecharSplash();
+    }
+  });
 
   // Fallback: se por algum motivo o usuário não clicar, nunca trava
   window.setTimeout(function () {
@@ -46,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const fallback = 'data:image/svg+xml;utf8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600">' +
     '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
-    '<stop offset="0" stop-color="#ffe3e8"/><stop offset="1" stop-color="#f6ecfb"/>' +
+    '<stop offset="0" stop-color="#ffe3e8"/><stop offset="1" stop-color="#fff0f3"/>' +
     '</linearGradient></defs>' +
     '<rect width="100%" height="100%" fill="url(#g)"/>' +
     '<text x="50%" y="55%" font-family="Poppins, Arial, sans-serif" font-size="200" font-weight="600" ' +
-    'fill="#d67ab1" text-anchor="middle" dominant-baseline="middle">CK</text></svg>'
+    'fill="#a63a78" text-anchor="middle" dominant-baseline="middle">CK</text></svg>'
   );
   document.querySelectorAll('img').forEach(function (img) {
     img.addEventListener('error', function () { img.src = fallback; });
@@ -83,17 +96,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function fecharMenu() {
     if (menu) menu.classList.remove('open');
-    if (navToggle) navToggle.classList.remove('active');
+    if (navToggle) {
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Abrir menu');
+    }
     if (navOverlay) navOverlay.classList.remove('active');
     document.body.classList.remove('menu-open');
   }
 
   if (navToggle && menu) {
     navToggle.addEventListener('click', function () {
-      menu.classList.toggle('open');
-      navToggle.classList.toggle('active');
-      if (navOverlay) navOverlay.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
+      var aberto = menu.classList.toggle('open');
+      navToggle.classList.toggle('active', aberto);
+      navToggle.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+      navToggle.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+      if (navOverlay) navOverlay.classList.toggle('active', aberto);
+      document.body.classList.toggle('menu-open', aberto);
     });
   }
   if (navOverlay) {
@@ -203,29 +222,70 @@ document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   var formContato = document.getElementById('formContato');
   if (formContato) {
+    var campoNome = document.getElementById('nome');
+    var campoEmail = document.getElementById('email');
+    var campoMensagem = document.getElementById('mensagem');
+    var msgBox = document.getElementById('formMsg');
+
+    function marcarCampo(campo, ok, mensagem) {
+      var group = campo.closest('.input-group');
+      var msgEl = group.querySelector('.campo-erro');
+      campo.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      if (group) group.classList.toggle('has-error', !ok);
+      if (msgEl) {
+        msgEl.textContent = ok ? '' : mensagem;
+        msgEl.classList.toggle('d-none', ok);
+      }
+      return ok;
+    }
+
+    function resetarErros() {
+      [campoNome, campoEmail, campoMensagem].forEach(function (c) {
+        if (c) {
+          c.removeAttribute('aria-invalid');
+          c.closest('.input-group').classList.remove('has-error');
+          var msgEl = c.closest('.input-group').querySelector('.campo-erro');
+          if (msgEl) { msgEl.textContent = ''; msgEl.classList.add('d-none'); }
+        }
+      });
+    }
+
     formContato.addEventListener('submit', function (event) {
       event.preventDefault();
-      var nome = document.getElementById('nome').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var mensagem = document.getElementById('mensagem').value.trim();
-      var msgBox = document.getElementById('formMsg');
-      var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      var nome = campoNome.value.trim();
+      var email = campoEmail.value.trim();
+      var mensagem = campoMensagem.value.trim();
 
-      msgBox.classList.remove('d-none', 'form-msg-sucesso', 'form-msg-erro');
+      msgBox.classList.remove('d-none', 'form-msg-sucesso');
+      msgBox.removeAttribute('tabindex');
 
-      if (nome === '' || email === '' || mensagem === '') {
+      var okNome = marcarCampo(campoNome, nome !== '', 'Preencha seu nome.');
+      var okEmail = marcarCampo(campoEmail, email !== '', 'Preencha seu e-mail.');
+      var okMensagem = marcarCampo(campoMensagem, mensagem !== '', 'Escreva sua mensagem.');
+      if (okEmail) okEmail = marcarCampo(campoEmail, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email), 'Informe um e-mail válido, por exemplo nome@dominio.com.');
+
+      if (!okNome || !okEmail || !okMensagem) {
         msgBox.classList.add('form-msg-erro');
-        msgBox.textContent = 'Atenção: preencha todos os campos do formulário.';
+        msgBox.setAttribute('role', 'alert');
+        msgBox.textContent = 'Corrija os campos destacados em vermelho e tente novamente.';
         return;
       }
-      if (!emailValido) {
-        msgBox.classList.add('form-msg-erro');
-        msgBox.textContent = 'Atenção: o e-mail informado não parece válido. Verifique e tente novamente.';
-        return;
-      }
+
       msgBox.classList.add('form-msg-sucesso');
-      msgBox.textContent = 'Mensagem enviada com sucesso. Obrigada pelo contato, ' + nome + '! Responderei em breve no e-mail informado.';
+      msgBox.setAttribute('role', 'status');
+      msgBox.textContent = 'Obrigada, ' + nome + '! Este é um portfólio estático, então esta mensagem não é enviada de verdade. Para falar comigo, use o e-mail acadêmico ou o Instagram ao lado.';
       formContato.reset();
+      resetarErros();
+      msgBox.setAttribute('tabindex', '-1');
+      msgBox.focus();
+    });
+
+    formContato.addEventListener('input', function (event) {
+      var campo = event.target;
+      if (campo.tagName === 'INPUT' || campo.tagName === 'TEXTAREA') {
+        marcarCampo(campo, true, '');
+        msgBox.classList.add('d-none');
+      }
     });
   }
 

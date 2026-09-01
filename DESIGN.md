@@ -10,6 +10,13 @@ colors:
   text-soft: "#6f6875"
   neutral-bg: "#fdfbfc"
   white: "#ffffff"
+  scrim: "rgba(90,30,60,0.38)"
+  form-ok-bg: "#eaf7ef"
+  form-ok-border: "#bfe6cf"
+  form-ok-text: "#2e7d4f"
+  form-err-bg: "#fdeeee"
+  form-err-border: "#f5c6c6"
+  form-err-text: "#b34a4a"
 typography:
   display:
     fontFamily: "Poppins, sans-serif"
@@ -91,6 +98,8 @@ Rosa pastel e off-white: a paleta sente-se como papel de seda e flor de cerejeir
 - **Papel** (#fdfbfc / #ffffff): fundos da página e dos cards.
 - **Papel Rosado** (#fff0f3): fundo pastel de seções alternadas e chips.
 - **Borda Rosa Antiga** (#ffe3e8): linhas e bordas sutis.
+- **Cortina** (rgba(90,30,60,0.38)): overlay quente sob o drawer do menu mobile.
+- **Estado do Formulário**: sucesso (`#eaf7ef`/`#bfe6cf`/`#2e7d4f`) e erro (`#fdeeee`/`#f5c6c6`/`#b34a4a`) para fundo/borda/texto.
 
 ### Named Rules
 **A Regra da Raridade.** O rosa primário profundo é o único tom "forte"; é escasso. Cabe a ele dar contraste a ações e destaques, enquanto os rosa claros preenchem o fundo. Se algo precisa chamar atenção, usa o primário; nunca dois tons fortes em disputa.
@@ -154,11 +163,15 @@ Cantos generosamente arredondados em toda parte: 14px para botões e inputs, 22p
 ### Inputs / Fields
 - **Style:** branco, borda 1.5px `border-rose`, cantos 14px, padding 16px 18px, Poppins.
 - **Focus:** borda rosa médio + anel de foco rosado translúcido (`0 0 0 4px rgba(247,174,248,0.2)`).
-- **Error:** mensagens abaixo do form em caixa rosada clara com texto vermelho-rosado.
+- **Error:** por campo — input com borda/texto `form-err-*` e mensagem inline monoespaçada abaixo (`aria-invalid` + `aria-describedby`). Mensagem geral em caixa clara com texto vermelho-rosado.
+- **Nota de honestidade:** o site é estático; o formulário é demo. A mensagem de sucesso diz isso e aponta para e-mail/Instagram reais.
 
 ### Navigation
-- **Desktop:** links Poppins 500 com sublinhado que anima em `scaleX`. CTA "Contato" é pílula preenchida rosa.
-- **Mobile (≤992px):** menu hambúrguer abre drawer lateral direito (máx 340px/86vw) de fundo branco quase-opaco, com links grandes centralizados. Overlay escurecido clicável atrás fecha o menu ao tocar fora.
+- **Desktop:** 5 destinos — Sobre, Formação, Projetos, Competências + CTA "Contato". Links Poppins 500 com sublinhado que anima em `scaleX`. O resto da página (Experiências, Hobbies, Viagens) é descoberto por rolagem; a nav não compete com a seção em foco.
+- **Mobile (≤992px):** menu hambúrguer (alvo ≥44px) abre drawer lateral direito (máx 340px/86vw) de fundo branco quase-opaco, com links grandes centralizados. Overlay escurecido clicável atrás fecha o menu ao tocar fora. `aria-expanded` reflete o estado.
+
+### Skills
+- Dois grupos rotulados em DM Mono — **Técnicas** (HTML5 & CSS3, Bootstrap 5, Lógica de Programação, Git & GitHub) e **Comportamentais** (Aprendizado Rápido, Resolução de Problemas, Organização & Métodos, Raciocínio Lógico). Chips não são interativos; sem affordance de clique.
 
 ## Do's and Don'ts
 

@@ -6,7 +6,7 @@
   <title>Portfólio | Cintia Kamei</title>
   <meta name="description" content="Portfólio de Cintia Kamei — estudante de Análise e Desenvolvimento de Sistemas no IFSP. Formação, competências, projetos, experiências e contato.">
   <meta name="author" content="Cintia Kamei">
-  <meta name="theme-color" content="#d67ab1">
+  <meta name="theme-color" content="#a63a78">
   <meta property="og:title" content="Portfólio | Cintia Kamei">
   <meta property="og:description" content="Estudante de ADS no IFSP — confira minha formação, competências, projetos e formas de contato.">
   <meta property="og:type" content="website">
@@ -19,10 +19,10 @@
   <!-- Splash Cinematográfico de Abertura -->
   <div class="splash" id="splash" role="dialog" aria-label="Apresentando Cintia Kamei">
     <span class="splash-kicker mono">Apresentando</span>
-    <h1 class="splash-title">
+    <p class="splash-title">
       <span class="splash-line" style="--i:0">Cintia</span>
       <span class="splash-line" style="--i:1">Kamei</span>
-    </h1>
+    </p>
     <div class="splash-bar">
       <span class="splash-load mono">ADS · IFSP · 2026</span>
     </div>
@@ -32,25 +32,19 @@
     </button>
   </div>
 
-  <!-- SVG Noise Filter -->
-  <svg class="noise-svg" aria-hidden="true"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#noise)"/></svg>
-
   <!-- Navigation -->
   <nav class="navbar" id="mainNav">
     <div class="nav-inner">
       <a class="nav-brand" href="#hero">Cintia<span>.</span>Kamei</a>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-controls="navLinks" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <div class="nav-overlay" id="navOverlay"></div>
+      <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
       <ul class="nav-links" id="navLinks">
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#formacao">Formação</a></li>
         <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#competencias">Skills</a></li>
-        <li><a href="#experiencias">Experiências</a></li>
-        <li><a href="#hobbies">Hobbies</a></li>
-        <li><a href="#viagens">Viagens</a></li>
+        <li><a href="#competencias">Competências</a></li>
         <li><a href="#contato" class="nav-cta">Contato</a></li>
       </ul>
     </div>
@@ -73,7 +67,7 @@
       </div>
     </div>
     <div class="hero-scroll">
-      <span class="mono" style="font-size: 0.7rem; letter-spacing: 0.1em;">SCROLL</span>
+      <span class="mono">SCROLL</span>
       <div class="scroll-line"></div>
     </div>
     <!-- Floating cherry blossoms -->
@@ -147,7 +141,7 @@
       <h2 class="section-title">Projetos<br><span class="accent">Realizados</span></h2>
       <div class="project-grid">
         <div class="project-card project-card--large">
-          <div class="project-visual" style="background: linear-gradient(135deg, #ffe3e8, #f7aef8);">
+          <div class="project-visual project-visual--rose">
             <span class="project-icon">❄️</span>
           </div>
           <div class="project-info">
@@ -165,7 +159,7 @@
           </div>
         </div>
         <div class="project-card">
-          <div class="project-visual" style="background: linear-gradient(135deg, #f6ecfb, #ffe3e8);">
+          <div class="project-visual project-visual--lilac">
             <span class="project-icon">☕</span>
           </div>
           <div class="project-info">
@@ -176,11 +170,11 @@
             </div>
             <h3 class="project-name">Cafeteria IFSP</h3>
             <p class="project-desc">Site com quatro páginas em tons de creme, chocolate e caramelo. Meu primeiro projeto da graduação.</p>
-            <span class="project-status mono">Nota 10 · 1º semestre</span>
+            <span class="project-status mono">Nota 10 · 1º semestre · sem deploy</span>
           </div>
         </div>
         <div class="project-card">
-          <div class="project-visual" style="background: linear-gradient(135deg, #ffe3e8, #f6ecfb);">
+          <div class="project-visual project-visual--pearl">
             <span class="project-icon">✨</span>
           </div>
           <div class="project-info">
@@ -205,38 +199,48 @@
       <p class="section-label mono">O que eu faço bem</p>
       <h2 class="section-title">Competências</h2>
       <div class="skills-cloud">
-        <span class="skill-tag magnetic-btn" style="--delay: 0">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
-          Aprendizado Rápido
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 1">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-          Resolução de Problemas
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 2">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          Organização &amp; Métodos
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 3">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-          Raciocínio Lógico
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 4">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          HTML5 &amp; CSS3
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 5">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-          Bootstrap 5
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 6">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          Lógica de Programação
-        </span>
-        <span class="skill-tag magnetic-btn" style="--delay: 7">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-          Git &amp; GitHub
-        </span>
+        <div class="skills-group">
+          <h3 class="skills-group-label mono">Técnicas</h3>
+          <div class="skills-lista">
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              HTML5 &amp; CSS3
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Bootstrap 5
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              Lógica de Programação
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              Git &amp; GitHub
+            </span>
+          </div>
+        </div>
+        <div class="skills-group">
+          <h3 class="skills-group-label mono">Comportamentais</h3>
+          <div class="skills-lista">
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
+              Aprendizado Rápido
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Resolução de Problemas
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Organização &amp; Métodos
+            </span>
+            <span class="skill-tag">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              Raciocínio Lógico
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -277,7 +281,7 @@
     <div class="container">
       <p class="section-label mono">Fora da faculdade</p>
       <h2 class="section-title">Hobbies &amp; Lazer</h2>
-      <div class="hobbies-scroll">
+      <div class="hobbies-grid">
         <div class="hobby-card">
           <div class="hobby-header">
             <span class="hobby-icon">♪</span>
@@ -346,18 +350,21 @@
         <div class="contact-form-side">
           <p class="section-label mono">Vamos conversar</p>
           <h2 class="section-title">Formas de<br><span class="accent">Contato</span></h2>
-          <form id="formContato">
+          <form id="formContato" novalidate>
             <div class="input-group">
               <label for="nome" class="mono">Nome</label>
-              <input type="text" id="nome" required placeholder="Seu nome">
+              <input type="text" id="nome" required placeholder="Seu nome" aria-describedby="erro-nome">
+              <p class="campo-erro mono" id="erro-nome" aria-live="assertive"></p>
             </div>
             <div class="input-group">
               <label for="email" class="mono">E-mail</label>
-              <input type="email" id="email" required placeholder="seuemail@email.com">
+              <input type="email" id="email" required placeholder="seuemail@email.com" aria-describedby="erro-email">
+              <p class="campo-erro mono" id="erro-email" aria-live="assertive"></p>
             </div>
             <div class="input-group">
               <label for="mensagem" class="mono">Mensagem</label>
-              <textarea id="mensagem" rows="4" required placeholder="Escreva sua mensagem..."></textarea>
+              <textarea id="mensagem" rows="4" required placeholder="Escreva sua mensagem..." aria-describedby="erro-mensagem"></textarea>
+              <p class="campo-erro mono" id="erro-mensagem" aria-live="assertive"></p>
             </div>
             <button type="submit" class="btn btn-primary magnetic-btn w-full">Enviar mensagem</button>
             <div id="formMsg" class="form-msg d-none" role="status" aria-live="polite"></div>
