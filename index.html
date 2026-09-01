@@ -62,7 +62,7 @@
         <p class="hero-subtitle">No Instituto Federal de São Paulo. Transformo problemas em diagramas, requisitos em interfaces e curiosidade em código.</p>
         <div class="hero-actions">
           <a href="#projetos" class="btn btn-primary magnetic-btn">Explorar projetos <span class="arrow">→</span></a>
-          <a href="#contato" class="btn btn-outline magnetic-btn">Entrar em contato</a>
+          <a href="mailto:cintia.kamei@aluno.ifsp.edu.br" class="btn btn-outline magnetic-btn">Enviar e-mail</a>
         </div>
       </div>
     </div>
@@ -307,39 +307,55 @@
     </div>
   </section>
 
-  <!-- Travel -->
+  <!-- Refúgio no litoral -->
   <section id="viagens" class="section section--travel">
     <div class="container">
       <p class="section-label mono">Momentos</p>
-      <h2 class="section-title">Viagens<br><span class="accent">Realizadas</span></h2>
+      <h2 class="section-title">Litoral, meu<br><span class="accent">refúgio</span></h2>
       <div class="travel-featured">
-        <span class="travel-feat-icon">☀</span>
-        <h3>Refúgio no Litoral</h3>
-        <p>Tenho o costume de ir para a praia praticamente todos os meses. É o meu lugar favorito para recarregar as energias, se conectar com a natureza e relaxar a mente.</p>
+        <svg class="travel-feat-sun" viewBox="0 0 120 120" width="120" height="120" aria-hidden="true">
+          <circle cx="60" cy="60" r="26" fill="none" stroke="currentColor" stroke-width="3"/>
+          <g stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <line x1="60" y1="4" x2="60" y2="22"/>
+            <line x1="60" y1="98" x2="60" y2="116"/>
+            <line x1="4" y1="60" x2="22" y2="60"/>
+            <line x1="98" y1="60" x2="116" y2="60"/>
+            <line x1="20" y1="20" x2="33" y2="33"/>
+            <line x1="87" y1="87" x2="100" y2="100"/>
+            <line x1="100" y1="20" x2="87" y2="33"/>
+            <line x1="33" y1="87" x2="20" y2="100"/>
+          </g>
+        </svg>
+        <h3>Um cantinho de recarregar</h3>
+        <p>Quase todo mês tem praia marcada na agenda: pé na areia, sol na pele e a cabeça em silêncio. Se o seu fim de semana andou pesado, fica à vontade — é pra isso que esse cantinho serve.</p>
       </div>
       <div class="travel-grid">
-        <div class="travel-card">
-          <div class="travel-img"><img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=800&q=60" alt="Praia ensolarada no litoral de São Paulo" loading="lazy"></div>
-          <h4>São Paulo</h4>
-          <p>O litoral de sempre: praia marcada na agenda todos os meses.</p>
-        </div>
-        <div class="travel-card">
-          <div class="travel-img"><img src="https://images.unsplash.com/photo-1636873129833-f02760505743?auto=format&fit=crop&w=800&q=60" alt="Praia em Porto Seguro, Bahia" loading="lazy"></div>
-          <h4>Bahia</h4>
-          <p>Água morna, sol forte e um ritmo que não tem pressa.</p>
-        </div>
-        <div class="travel-card">
-          <div class="travel-img"><img src="https://images.unsplash.com/photo-1706673354527-8d1b3d01de22?auto=format&fit=crop&w=800&q=60" alt="Dunas de Jericoacoara, Ceará" loading="lazy"></div>
-          <h4>Ceará</h4>
-          <p>Vento na cara e dunas no horizonte.</p>
-        </div>
-        <div class="travel-card">
-          <div class="travel-img"><img src="https://images.unsplash.com/photo-1653937905306-6fe27b199660?auto=format&fit=crop&w=800&q=60" alt="Baías e mata atlântica no litoral do Paraná" loading="lazy"></div>
-          <h4>Paraná</h4>
-          <p>Baías tranquilas onde a mata atlântica encontra o mar.</p>
-        </div>
+        <article class="travel-card" style="--rot: -1.5deg">
+          <div class="travel-photo"><img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=800&q=60" alt="Praia ensolarada no litoral de São Paulo" loading="lazy"></div>
+          <span class="travel-detail mono">verão · todo mês</span>
+          <h3 class="travel-dest">Litoral de São Paulo</h3>
+          <p class="travel-cap">O clássico que não falha: praia marcada na agenda e a certeza de que vai dar tudo certo.</p>
+        </article>
+        <article class="travel-card" style="--rot: 1deg">
+          <div class="travel-photo"><img src="https://images.unsplash.com/photo-1636873129833-f02760505743?auto=format&fit=crop&w=800&q=60" alt="Praia em Porto Seguro, Bahia" loading="lazy"></div>
+          <span class="travel-detail mono">águas mornas</span>
+          <h3 class="travel-dest">Porto Seguro, Bahia</h3>
+          <p class="travel-cap">Água morna, sol forte e pressa é palavra que não entra no carro.</p>
+        </article>
+        <article class="travel-card" style="--rot: -0.75deg">
+          <div class="travel-photo"><img src="https://images.unsplash.com/photo-1706673354527-8d1b3d01de22?auto=format&fit=crop&w=800&q=60" alt="Dunas de Jericoacoara, Ceará" loading="lazy"></div>
+          <span class="travel-detail mono">vento na cara</span>
+          <h3 class="travel-dest">Jericoacoara, Ceará</h3>
+          <p class="travel-cap">Duna no horizonte, vento de frente e a sensação de que o mundo pode esperar.</p>
+        </article>
+        <article class="travel-card" style="--rot: 1.3deg">
+          <div class="travel-photo"><img src="https://images.unsplash.com/photo-1653937905306-6fe27b199660?auto=format&fit=crop&w=800&q=60" alt="Baías e mata atlântica no litoral do Paraná" loading="lazy"></div>
+          <span class="travel-detail mono">mar e mata</span>
+          <h3 class="travel-dest">Litoral do Paraná</h3>
+          <p class="travel-cap">Cantos de baía onde a mata atlântica chega sem pedir licença.</p>
+        </article>
       </div>
-      <p class="travel-credit mono">Fotos ilustrativas dos destinos — créditos aos fotógrafos via Unsplash.</p>
+      <p class="travel-credit mono">Fotos ilustrativas — créditos aos fotógrafos via Unsplash.</p>
     </div>
   </section>
 
@@ -369,13 +385,16 @@
             <button type="submit" class="btn btn-primary magnetic-btn w-full">Enviar mensagem</button>
             <div id="formMsg" class="form-msg d-none" role="status" aria-live="polite"></div>
           </form>
+          <p class="form-nota">O formulário é só uma demonstração — este site é estático e não envia nada. Para falar comigo de verdade, use o e-mail do card ao lado.</p>
         </div>
         <div class="contact-info-side">
-          <div class="contact-item">
-            <span class="contact-icon">✉</span>
+          <div class="contact-highlight">
+            <span class="contact-highlight-icon">✉</span>
             <div>
               <strong>E-mail Acadêmico</strong>
-              <a href="mailto:cintia.kamei@aluno.ifsp.edu.br">cintia.kamei@aluno.ifsp.edu.br</a>
+              <p class="contact-highlight-desc">Caminho mais rápido para estágio e freelas.</p>
+              <a class="contact-highlight-mail" href="mailto:cintia.kamei@aluno.ifsp.edu.br">cintia.kamei@aluno.ifsp.edu.br</a>
+              <a class="btn btn-primary magnetic-btn w-full" href="mailto:cintia.kamei@aluno.ifsp.edu.br">Escrever e-mail</a>
             </div>
           </div>
           <div class="contact-item">
@@ -401,7 +420,7 @@
   <footer class="footer">
     <div class="container">
       <p class="footer-brand">Cintia<span>.</span>Kamei</p>
-      <p class="footer-copy">&copy; 2026 Cintia Kamei · Desenvolvido com HTML, CSS &amp; JavaScript</p>
+      <p class="footer-copy">&copy; 2026 Cintia Kamei · Feito à mão com HTML, CSS &amp; JavaScript · Jardim de Sakura, em São Paulo</p>
       <span class="footer-blossom" aria-hidden="true">🌸</span>
     </div>
   </footer>

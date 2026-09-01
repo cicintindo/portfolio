@@ -2,23 +2,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ============================================================
   // Splash cinematográfico de abertura
-  // Mostra "Apresentando Cintia Kamei" e só revela o site
-  // quando o usuário clica em ENTRAR (ou após tocar em mobile).
+  // Apresenta a marca e libera o site sozinho em ~1,5s;
+  // ENTRAR/Enter/Escape apenas adiantam a entrada.
   // ============================================================
   var splash = document.getElementById('splash');
   var splashEnter = document.getElementById('splashEnter');
-
-  // Bloqueia o scroll enquanto o splash estiver aberto
-  document.body.style.overflow = 'hidden';
 
   var fechadoPorTeclado = false;
   var navBrand = document.querySelector('.nav-brand');
 
   function fecharSplash() {
-    if (!splash) { document.body.style.overflow = ''; return; }
+    if (!splash) return;
     splash.classList.add('done');
     document.body.classList.add('entered');
-    document.body.style.overflow = '';
     if (fechadoPorTeclado && navBrand) navBrand.focus();
     window.setTimeout(function () {
       if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
@@ -27,9 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (splashEnter) {
     splashEnter.addEventListener('click', fecharSplash);
-  } else if (splash) {
-    // Mobile / sem JS para interação: fecha após um tempo
-    window.setTimeout(fecharSplash, 2800);
   }
 
   // Controles de acessibilidade: fecha com Enter (no foco) ou Escape
@@ -48,10 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // Fallback: se por algum motivo o usuário não clicar, nunca trava
+  // Auto-revelação: ninguém fica preso, o site entra sozinho em ~1,5s
   window.setTimeout(function () {
     if (splash && !splash.classList.contains('done')) fecharSplash();
-  }, 20000);
+  }, 1500);
 
   // ============================================================
   // Fallback de fotos (caso assets/foto.jpg não exista)
@@ -88,7 +81,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (s.offsetTop <= pos) atual = s.id;
     });
     navLinks.forEach(function (l) {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + atual);
+      var ativo = l.getAttribute('href') === '#' + atual;
+      l.classList.toggle('active', ativo);
+      if (ativo) { l.setAttribute('aria-current', 'page'); }
+      else { l.removeAttribute('aria-current'); }
     });
   }
   window.addEventListener('scroll', aoRolar, { passive: true });

@@ -965,14 +965,22 @@ button:focus-visible {
 /* ============================================================
    Viagens
    ============================================================ */
+.section--travel {
+  --areia: #f6e6d3;
+  --areia-clara: #fcf3e7;
+  --sol: #f3a94e;
+  --terracota: #a34a22;
+  background: linear-gradient(180deg, var(--areia-clara) 0%, var(--areia) 100%);
+}
+
 .travel-featured {
   text-align: center;
-  background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-hover));
-  border-radius: var(--radius);
-  padding: 60px 40px;
+  background: linear-gradient(140deg, #8e3118 0%, #a84620 62%, #b14f26 100%);
+  border-radius: 28px;
+  padding: 72px 40px 64px;
   color: #fff;
   box-shadow: var(--sombra);
-  margin-bottom: 28px;
+  margin-bottom: 42px;
   position: relative;
   overflow: hidden;
 }
@@ -981,54 +989,104 @@ button:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 50%);
+  background: radial-gradient(circle at 78% 14%, rgba(255, 224, 178, 0.35), transparent 40%),
+              radial-gradient(circle at 10% 95%, rgba(54, 18, 8, 0.25), transparent 46%);
 }
 
-.travel-feat-icon {
-  font-size: 2.8rem;
-  display: block;
-  margin-bottom: 16px;
+.travel-feat-sun {
+  position: relative;
+  z-index: 1;
+  color: rgba(255, 255, 255, 0.94);
+  margin-bottom: 12px;
+  transform-origin: center;
+  animation: girar 30s linear infinite;
+}
+
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+
+.travel-featured h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 3.6vw, 2.7rem);
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 14px;
   position: relative;
   z-index: 1;
 }
-
-.travel-featured h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 14px; position: relative; z-index: 1; }
-.travel-featured p { font-size: 1.02rem; line-height: 1.7; max-width: 720px; margin-inline: auto; opacity: 0.95; position: relative; z-index: 1; }
+.travel-featured p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 640px;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+  color: #fff7ec;
+}
 
 .travel-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px;
 }
 
 .travel-card {
-  background: var(--branco);
-  border-radius: 22px;
-  padding: 28px 22px;
-  text-align: center;
-  box-shadow: var(--sombra);
-  transition: transform 0.3s ease;
+  background: #fffdf8;
+  border-radius: 26px;
+  padding: 18px 18px 26px;
+  box-shadow: 0 16px 34px rgba(163, 74, 34, 0.16);
+  transform: rotate(var(--rot));
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-.travel-card:hover { transform: translateY(-6px); }
-.travel-img {
+.travel-card:hover {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow: 0 20px 44px rgba(163, 74, 34, 0.22);
+}
+.travel-photo {
   width: 100%;
-  height: 150px;
-  border-radius: 14px;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  position: relative;
 }
-.travel-img img {
+.travel-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
-.travel-card:hover .travel-img img { transform: scale(1.06); }
-.travel-card h4 { font-weight: 600; margin-bottom: 8px; }
-.travel-card p { font-size: 0.85rem; color: var(--texto-suave); }
+.travel-card:hover .travel-photo img { transform: scale(1.06); }
+.travel-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(163, 74, 34, 0.22) 100%);
+  pointer-events: none;
+}
+.travel-detail {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--terracota);
+  margin-bottom: 8px;
+}
+.travel-dest {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 8px;
+}
+.travel-cap {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--texto-suave);
+}
 .travel-credit {
-  margin-top: 22px;
+  margin-top: 36px;
   font-size: 0.75rem;
   color: var(--texto-suave);
   text-align: center;
@@ -1120,6 +1178,47 @@ button:focus-visible {
 .contact-item a { color: var(--rosa-escuro); text-decoration: underline; text-underline-offset: 3px; }
 .contact-item span:not(.contact-icon) { color: var(--texto-suave); }
 
+.contact-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 26px 24px;
+  background: linear-gradient(135deg, #8e3118, #b14f26);
+  border-radius: 22px;
+  color: #fff;
+  box-shadow: var(--sombra);
+}
+.contact-highlight-icon {
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+}
+.contact-highlight strong { display: block; font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; }
+.contact-highlight-desc { font-size: 0.88rem; opacity: 0.94; margin-bottom: 10px; }
+.contact-highlight-mail {
+  display: inline-block;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  margin-bottom: 14px;
+}
+.contact-highlight .btn { background: #fff; color: #8e3118; }
+.contact-highlight + .contact-item { margin-top: 2px; }
+
+.form-nota {
+  margin-top: 16px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
 /* ============================================================
    Footer
    ============================================================ */
@@ -1205,7 +1304,8 @@ button:focus-visible {
 }
 
 @media (max-width: 576px) {
-  .travel-grid { grid-template-columns: 1fr; }
+  .travel-featured { padding: 52px 22px 46px; }
+  .travel-grid { grid-template-columns: 1fr; gap: 26px; }
   .hero-actions { flex-direction: column; }
   .btn { width: 100%; }
   .hero-scroll { display: none; }

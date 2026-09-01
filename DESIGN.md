@@ -17,6 +17,19 @@ colors:
   form-err-bg: "#fdeeee"
   form-err-border: "#f5c6c6"
   form-err-text: "#b34a4a"
+  areia: "#f6e6d3"
+  areia-clara: "#fcf3e7"
+  sol: "#f3a94e"
+  terracota: "#a34a22"
+  sunset-deep: "#8e3118"
+  sunset-mid: "#a84620"
+  sunset-light: "#b14f26"
+  travel-text: "#fff7ec"
+  travel-card-bg: "#fffdf8"
+  sol-glow: "rgba(255,224,178,0.35)"
+  sunset-shade: "rgba(54,18,8,0.25)"
+  travel-shadow: "rgba(163,74,34,0.16)"
+  travel-shadow-hover: "rgba(163,74,34,0.22)"
 typography:
   display:
     fontFamily: "Poppins, sans-serif"
@@ -31,11 +44,16 @@ typography:
   label:
     fontFamily: "DM Mono, monospace"
     fontWeight: 500
+  accentSerif:
+    fontFamily: "Playfair Display, serif"
+    note: "Edição exclusiva da seção Litoral (vitrine editorial); nunca para corpo."
 rounded:
   sm: "14px"
   md: "22px"
   lg: "28px"
   pill: "40px"
+  photo: "18px"
+  travel: "26px"
 spacing:
   sm: "8px"
   md: "16px"
@@ -100,6 +118,7 @@ Rosa pastel e off-white: a paleta sente-se como papel de seda e flor de cerejeir
 - **Borda Rosa Antiga** (#ffe3e8): linhas e bordas sutis.
 - **Cortina** (rgba(90,30,60,0.38)): overlay quente sob o drawer do menu mobile.
 - **Estado do Formulário**: sucesso (`#eaf7ef`/`#bfe6cf`/`#2e7d4f`) e erro (`#fdeeee`/`#f5c6c6`/`#b34a4a`) para fundo/borda/texto.
+- **Litoral (seção Viagens)**: segundo motivo autorizado e escasso — areia e areia-clara para o fundo da seção, terracota/sol e os stops de pôr do sol (`sunset-deep→mid→light`) para o banner de refúgio, com texto `#fff7ec` (AA ≥4.5). Valores orbitais (brilhos, sombras da sombra) em `sol-glow`, `sunset-shade`, `travel-shadow*`.
 
 ### Named Rules
 **A Regra da Raridade.** O rosa primário profundo é o único tom "forte"; é escasso. Cabe a ele dar contraste a ações e destaques, enquanto os rosa claros preenchem o fundo. Se algo precisa chamar atenção, usa o primário; nunca dois tons fortes em disputa.
@@ -123,7 +142,7 @@ Rosa pastel e off-white: a paleta sente-se como papel de seda e flor de cerejeir
 
 ## Layout
 
-Container central de até 1200px com padding lateral de 24px. Seções empilham verticalmente com padding generoso (`clamp(6rem,12vw,9rem)`), separando enormemente umas das outras. Grids principais: 2 colunas (about, projetos), 3 colunas (formação, hobbies), 4 colunas (viagens). Em ≤992px, grids colapsam para 1 coluna; viagens para 2 em tablet e 1 em mobile. Nav fixa com menu hambúrguer (drawer lateral direito) em ≤992px.
+Container central de até 1200px com padding lateral de 24px. Seções empilham verticalmente com padding generoso (`clamp(6rem,12vw,9rem)`), separando enormemente umas das outras. Grids principais: 2 colunas (about, projetos, viagens), 3 colunas (formação, hobbies). Em ≤992px, grids colapsam para 1 coluna; viagens mantém 2 colunas e em ≤576px vira 1. Nav fixa com menu hambúrguer (drawer lateral direito) em ≤992px.
 
 Acentua-se mais espaço acima de um título do que abaixo — cada seção respira.
 
@@ -140,7 +159,7 @@ Profundidade é transmitida **exclusivamente por sombra suave**: um halo difuso 
 
 ## Shapes
 
-Cantos generosamente arredondados em toda parte: 14px para botões e inputs, 22px para cards de viagem/contato, 28px para cards principais, e pílulas (40px) para tags, chips, badges e botão de entrada do splash. Ícones de hobby são azulejos redondos alinhados lado a lado com o título.
+Cantos generosamente arredondados em toda parte: 14px para botões e inputs, 18/26px para a vitrine de viagens (foto/card), 22px para cards de contato, 28px para cards principais, e pílulas (40px) para tags, chips, badges e botão de entrada do splash. Ícones de hobby são azulejos redondos alinhados lado a lado com o título.
 
 ## Components
 
@@ -165,6 +184,10 @@ Cantos generosamente arredondados em toda parte: 14px para botões e inputs, 22p
 - **Focus:** borda rosa médio + anel de foco rosado translúcido (`0 0 0 4px rgba(247,174,248,0.2)`).
 - **Error:** por campo — input com borda/texto `form-err-*` e mensagem inline monoespaçada abaixo (`aria-invalid` + `aria-describedby`). Mensagem geral em caixa clara com texto vermelho-rosado.
 - **Nota de honestidade:** o site é estático; o formulário é demo. A mensagem de sucesso diz isso e aponta para e-mail/Instagram reais.
+
+## Litoral — Refúgio Costeiro (seção Viagens)
+
+A seção de viagens é um segundo motivo deliberado dentro do jardim: o entardecer na praia. Fundo arenoso quente (`areia`/`areia-clara`), terracota e sol — restritos a esta seção — para acolher o visitante como um convite ("fica à vontade"). O banner usa o gradiente de pôr do sol com um sol SVG traçado (`currentColor`) que gira lentamente (30s) e desliga sob `prefers-reduced-motion`. Os cards são maiores que o padrão (grade 2 colunas, `rounded.travel` 26px, foto 4:5 com `rounded.photo` 18px e véu quente translúcido), com leve rotação orgânica por card (`--rot`) que se retifica no hover, e título de destino em **Playfair Display** (serif) como nota editorial — a única ocorrência de serif no sistema, reservada a essa vitrine. Texto sempre AA sobre o gradiente (`#fff7ec` sobre os stops mais escuros).
 
 ### Navigation
 - **Desktop:** 5 destinos — Sobre, Formação, Projetos, Competências + CTA "Contato". Links Poppins 500 com sublinhado que anima em `scaleX`. O resto da página (Experiências, Hobbies, Viagens) é descoberto por rolagem; a nav não compete com a seção em foco.
