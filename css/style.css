@@ -623,6 +623,13 @@ button:focus-visible {
   height: 140px;
   background: linear-gradient(180deg, #fdfbfc 0%, var(--rosa-claro) 100%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.section--skills .container,
+.section--hobbies .container {
+  position: relative;
+  z-index: 1;
 }
 
 .section--skills {
