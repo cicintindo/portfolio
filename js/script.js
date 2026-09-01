@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!okNome || !okEmail || !okMensagem) {
         msgBox.classList.add('form-msg-erro');
         msgBox.setAttribute('role', 'alert');
-        msgBox.textContent = 'Corrija os campos destacados e tente de novo.';
+        msgBox.textContent = 'Corrija os campos destacados e tente novamente.';
         return;
       }
 
