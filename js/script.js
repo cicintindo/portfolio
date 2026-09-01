@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const navLinks = document.querySelectorAll('.nav-links a');
   const navToggle = document.getElementById('navToggle');
   const menu = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
   const secoes = document.querySelectorAll('section[id]');
 
   function aoRolar() {
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function fecharMenu() {
     if (menu) menu.classList.remove('open');
     if (navToggle) navToggle.classList.remove('active');
+    if (navOverlay) navOverlay.classList.remove('active');
     document.body.classList.remove('menu-open');
   }
 
@@ -90,8 +92,12 @@ document.addEventListener('DOMContentLoaded', function () {
     navToggle.addEventListener('click', function () {
       menu.classList.toggle('open');
       navToggle.classList.toggle('active');
+      if (navOverlay) navOverlay.classList.toggle('active');
       document.body.classList.toggle('menu-open');
     });
+  }
+  if (navOverlay) {
+    navOverlay.addEventListener('click', fecharMenu);
   }
   navLinks.forEach(function (l) {
     l.addEventListener('click', fecharMenu);
