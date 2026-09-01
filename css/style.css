@@ -20,6 +20,7 @@
   --sombra: 0 18px 40px rgba(150, 66, 120, 0.14);
   --sombra-hover: 0 26px 55px rgba(150, 66, 120, 0.24);
   --radius: 28px;
+  --font-display: 'Newsreader', Georgia, serif;
 }
 
 * {
@@ -37,6 +38,23 @@ body {
   color: var(--texto);
   background-color: #fdfbfc;
   overflow-x: hidden;
+}
+
+/* Grão de papel sutil (anti-tela-na-tela) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 2500;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 section[id] {
@@ -131,8 +149,9 @@ button:focus-visible {
 }
 
 .splash-title {
+  font-family: var(--font-display);
   font-size: clamp(3.2rem, 11vw, 8rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
   letter-spacing: -0.03em;
   text-align: center;
@@ -322,7 +341,7 @@ button:focus-visible {
 }
 
 .nav-links .nav-cta {
-  background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-hover));
+  background: var(--rosa-escuro);
   color: #fff;
   padding: 10px 20px;
   border-radius: 14px;
@@ -330,7 +349,7 @@ button:focus-visible {
   box-shadow: 0 8px 18px rgba(214, 122, 177, 0.3);
 }
 .nav-links .nav-cta::after { display: none; }
-.nav-links .nav-cta:hover { color: #fff; transform: translateY(-2px); }
+.nav-links .nav-cta:hover { background: var(--rosa-hover); color: #fff; transform: translateY(-2px); }
 
 .nav-toggle {
   display: none;
@@ -411,34 +430,31 @@ button:focus-visible {
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  text-align: center;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  text-align: left;
   align-items: center;
-  gap: 40px;
-  padding-top: 110px;
-  padding-bottom: 60px;
+  gap: 24px;
+  padding-top: 120px;
+  padding-bottom: 84px;
+  max-width: 1080px;
 }
 
 .hero-content { position: relative; z-index: 2; }
 
 .hero-label {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
   color: var(--rosa-escuro);
-  margin-bottom: 22px;
-  display: inline-block;
-  padding: 8px 16px;
-  border: 1.5px solid var(--rosa-escuro);
-  border-radius: 40px;
-  background: rgba(255, 255, 255, 0.5);
+  margin-bottom: 20px;
 }
 
 .hero-title {
-  font-size: clamp(2.6rem, 6.5vw, 4.8rem);
-  font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.015em;
   color: var(--texto);
   margin-bottom: 26px;
 }
@@ -477,11 +493,11 @@ button:focus-visible {
 .hero-subtitle {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: var(--texto-suave);
-  max-width: 36rem;
-  margin: 0 auto 34px;
+  max-width: 34rem;
+  margin: 0 0 34px;
 }
 
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: flex-start; }
 
 .btn {
   display: inline-flex;
@@ -504,11 +520,11 @@ button:focus-visible {
 .btn:hover .arrow { transform: translateX(4px); }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-hover));
+  background: var(--rosa-escuro);
   color: #fff;
   box-shadow: 0 10px 24px rgba(214, 122, 177, 0.35);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 34px rgba(214, 122, 177, 0.5); }
+.btn-primary:hover { background: var(--rosa-hover); transform: translateY(-3px); box-shadow: 0 16px 34px rgba(214, 122, 177, 0.5); }
 
 .btn-outline {
   background: transparent;
@@ -667,8 +683,9 @@ button:focus-visible {
 .stat { text-align: left; }
 .stat-number {
   display: block;
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--rosa-escuro);
 }
 .stat-label {
@@ -711,9 +728,11 @@ button:focus-visible {
 
 .edu-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
+
+.edu-card:first-child { grid-column: 1 / -1; }
 
 .edu-card {
   position: relative;
@@ -786,9 +805,11 @@ button:focus-visible {
 .project-visual--pearl { background: linear-gradient(135deg, var(--borda-rosa), var(--rosa-claro)); }
 
 .project-icon {
-  font-size: 4rem;
+  width: 72px;
+  height: 72px;
+  color: var(--rosa-escuro);
   filter: drop-shadow(0 10px 20px rgba(214, 122, 177, 0.3));
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, color 0.4s ease;
 }
 .project-card:hover .project-icon { transform: scale(1.15) rotate(-6deg); }
 
@@ -952,10 +973,9 @@ button:focus-visible {
   width: 56px;
   height: 56px;
   flex-shrink: 0;
-  font-size: 1.6rem;
-  background: linear-gradient(135deg, var(--rosa-claro), #fef7fb);
-  border-radius: 14px;
   color: var(--rosa-escuro);
+  background: var(--rosa-claro);
+  border-radius: 14px;
   border: 1px solid var(--borda-rosa);
 }
 
@@ -966,18 +986,14 @@ button:focus-visible {
    Viagens
    ============================================================ */
 .section--travel {
-  --areia: #f6e6d3;
-  --areia-clara: #fcf3e7;
-  --sol: #f3a94e;
-  --terracota: #a34a22;
-  background: linear-gradient(180deg, var(--areia-clara) 0%, var(--areia) 100%);
+  background: linear-gradient(180deg, #fdfbfc 0%, var(--rosa-claro) 100%);
 }
 
 .travel-featured {
   text-align: center;
-  background: linear-gradient(140deg, #8e3118 0%, #a84620 62%, #b14f26 100%);
-  border-radius: 28px;
-  padding: 72px 40px 64px;
+  background: var(--rosa-escuro);
+  border-radius: var(--radius);
+  padding: 64px 40px 58px;
   color: #fff;
   box-shadow: var(--sombra);
   margin-bottom: 42px;
@@ -989,15 +1005,16 @@ button:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 78% 14%, rgba(255, 224, 178, 0.35), transparent 40%),
-              radial-gradient(circle at 10% 95%, rgba(54, 18, 8, 0.25), transparent 46%);
+  background:
+    radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.14), transparent 42%),
+    radial-gradient(circle at 8% 100%, rgba(90, 30, 60, 0.3), transparent 46%);
 }
 
 .travel-feat-sun {
   position: relative;
   z-index: 1;
-  color: rgba(255, 255, 255, 0.94);
-  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 14px;
   transform-origin: center;
   animation: girar 30s linear infinite;
 }
@@ -1007,7 +1024,6 @@ button:focus-visible {
 }
 
 .travel-featured h3 {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(1.9rem, 3.6vw, 2.7rem);
   font-style: italic;
   font-weight: 600;
@@ -1022,7 +1038,7 @@ button:focus-visible {
   margin-inline: auto;
   position: relative;
   z-index: 1;
-  color: #fff7ec;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .travel-grid {
@@ -1032,21 +1048,21 @@ button:focus-visible {
 }
 
 .travel-card {
-  background: #fffdf8;
-  border-radius: 26px;
-  padding: 18px 18px 26px;
-  box-shadow: 0 16px 34px rgba(163, 74, 34, 0.16);
+  background: var(--branco);
+  border-radius: var(--radius);
+  padding: 14px 14px 28px;
+  box-shadow: var(--sombra);
   transform: rotate(var(--rot));
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 .travel-card:hover {
   transform: rotate(0deg) translateY(-8px);
-  box-shadow: 0 20px 44px rgba(163, 74, 34, 0.22);
+  box-shadow: var(--sombra-hover);
 }
 .travel-photo {
   width: 100%;
   aspect-ratio: 4 / 5;
-  border-radius: 18px;
+  border-radius: 14px;
   overflow: hidden;
   margin-bottom: 18px;
   position: relative;
@@ -1059,31 +1075,25 @@ button:focus-visible {
   transition: transform 0.6s ease;
 }
 .travel-card:hover .travel-photo img { transform: scale(1.06); }
-.travel-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 55%, rgba(163, 74, 34, 0.22) 100%);
-  pointer-events: none;
-}
 .travel-detail {
   display: block;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
-  color: var(--terracota);
+  color: var(--rosa-escuro);
   margin-bottom: 8px;
+  margin-left: 6px;
 }
 .travel-dest {
-  font-family: 'Playfair Display', serif;
   font-size: 1.45rem;
   font-weight: 600;
   color: var(--texto);
-  margin-bottom: 8px;
+  margin: 0 0 8px 6px;
 }
 .travel-cap {
   font-size: 0.95rem;
   line-height: 1.65;
   color: var(--texto-suave);
+  margin: 0 6px;
 }
 .travel-credit {
   margin-top: 36px;
@@ -1183,7 +1193,7 @@ button:focus-visible {
   align-items: flex-start;
   gap: 16px;
   padding: 26px 24px;
-  background: linear-gradient(135deg, #8e3118, #b14f26);
+  background: var(--rosa-escuro);
   border-radius: 22px;
   color: #fff;
   box-shadow: var(--sombra);
@@ -1195,7 +1205,6 @@ button:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
   background: rgba(255, 255, 255, 0.18);
   border-radius: 14px;
 }
@@ -1209,8 +1218,11 @@ button:focus-visible {
   text-underline-offset: 3px;
   margin-bottom: 14px;
 }
-.contact-highlight .btn { background: #fff; color: #8e3118; }
+.contact-highlight .btn { background: #fff; color: var(--rosa-escuro); }
 .contact-highlight + .contact-item { margin-top: 2px; }
+
+.contact-icon svg, .contact-highlight-icon svg { color: inherit; }
+.contact-highlight .contact-highlight-icon { color: #fff; }
 
 .form-nota {
   margin-top: 16px;
@@ -1238,7 +1250,8 @@ button:focus-visible {
   position: absolute;
   right: 30px;
   bottom: 20px;
-  font-size: 1.8rem;
+  fill: currentColor;
+  color: var(--rosa-escuro);
   opacity: 0.5;
   animation: float-soft 3s ease-in-out infinite;
 }
@@ -1260,7 +1273,7 @@ button:focus-visible {
   height: 50px;
   border: none;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--rosa-escuro), var(--rosa-hover));
+  background: var(--rosa-escuro);
   color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
@@ -1287,9 +1300,9 @@ button:focus-visible {
    Responsividade
    ============================================================ */
 @media (max-width: 992px) {
-  .hero-inner { text-align: center; }
-  .hero-subtitle { margin-inline: auto; }
-  .hero-actions { justify-content: center; }
+  .hero-inner { text-align: left; }
+  .hero-subtitle { margin: 0 0 30px; }
+  .hero-actions { justify-content: flex-start; }
   .about-grid { grid-template-columns: 1fr; gap: 44px; }
   .about-stats { justify-content: center; }
   .about-visual { order: -1; }

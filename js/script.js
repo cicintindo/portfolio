@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Reveal ao rolar
   // ============================================================
   var revealEls = document.querySelectorAll(
-    '.section-title, .section-label, .about-desc, .about-stats, .about-visual, .edu-card, .project-card, .skill-tag, .exp-item, .hobby-card, .travel-featured, .travel-card, .contact-item, .contact-grid'
+    '.section-title, .section-label, .about-desc, .edu-card, .project-card, .hobby-card, .travel-featured, .travel-card, .contact-item'
   );
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
