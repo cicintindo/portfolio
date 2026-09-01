@@ -166,7 +166,7 @@ Cantos generosamente arredondados em toda parte: 14px para botões, inputs e fot
 - **Style:** branco, borda 1.5px `border-rose`, cantos 14px, padding 16px 18px, Poppins.
 - **Focus:** borda rosa médio + anel de foco rosado translúcido (`0 0 0 4px rgba(247,174,248,0.2)`).
 - **Error:** por campo — input com borda/texto `form-err-*` e mensagem inline monoespaçada abaixo (`aria-invalid` + `aria-describedby`). Mensagem geral em caixa clara com texto vermelho-rosado.
-- **Nota de honestidade:** enquanto o formulário for demo, a nota `.form-nota` e a mensagem de sucesso dizem isso e apontam para e-mail/Instagram reais. Pendente: conectar a Formspree assim que a aluna fornecer o form ID.
+- **Formulário real:** conectado à Formspree (`https://formspree.io/f/mkjnrneq`) via `fetch`/AJAX com mensagens inline de sucesso/erro; campos enviados: `nome`, `email`, `mensagem`, `_subject`, honeypot `_gotcha`. Sem nota de demo.
 
 ## Viagens — Postais em rosa
 

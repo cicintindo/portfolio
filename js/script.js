@@ -251,9 +251,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var nome = campoNome.value.trim();
       var email = campoEmail.value.trim();
       var mensagem = campoMensagem.value.trim();
+      var btn = formContato.querySelector('button[type="submit"]');
 
-      msgBox.classList.remove('d-none', 'form-msg-sucesso');
+      msgBox.classList.remove('d-none', 'form-msg-sucesso', 'form-msg-erro');
       msgBox.removeAttribute('tabindex');
+      msgBox.setAttribute('role', 'status');
 
       var okNome = marcarCampo(campoNome, nome !== '', 'Preencha seu nome.');
       var okEmail = marcarCampo(campoEmail, email !== '', 'Preencha seu e-mail.');
@@ -263,17 +265,43 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!okNome || !okEmail || !okMensagem) {
         msgBox.classList.add('form-msg-erro');
         msgBox.setAttribute('role', 'alert');
-        msgBox.textContent = 'Corrija os campos destacados em vermelho e tente novamente.';
+        msgBox.textContent = 'Corrija os campos destacados e tente de novo.';
         return;
       }
 
-      msgBox.classList.add('form-msg-sucesso');
-      msgBox.setAttribute('role', 'status');
-      msgBox.textContent = 'Obrigada, ' + nome + '! Este é um portfólio estático, então esta mensagem não é enviada de verdade. Para falar comigo, use o e-mail acadêmico ou o Instagram ao lado.';
-      formContato.reset();
-      resetarErros();
-      msgBox.setAttribute('tabindex', '-1');
-      msgBox.focus();
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      msgBox.textContent = 'Enviando sua mensagem…';
+
+      var dados = new FormData(formContato);
+
+      fetch(formContato.getAttribute('action'), {
+        method: 'POST',
+        body: dados,
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        return res.json().then(function (d) {
+          if (!res.ok) {
+            var motivo = (d && d.errors && Object.values(d.errors).join(' ')) || 'Falha no envio.';
+            throw new Error(motivo);
+          }
+          return d;
+        });
+      }).then(function () {
+        formContato.reset();
+        resetarErros();
+        msgBox.classList.add('form-msg-sucesso');
+        msgBox.setAttribute('role', 'status');
+        msgBox.textContent = 'Mensagem enviada! Respondo pelo e-mail informado assim que puder.';
+      }).catch(function () {
+        msgBox.classList.add('form-msg-erro');
+        msgBox.setAttribute('role', 'alert');
+        msgBox.textContent = 'Não consegui enviar agora. Tente novamente em instantes ou escreva direto para cintia.kamei@aluno.ifsp.edu.br.';
+      }).finally(function () {
+        btn.disabled = false;
+        btn.textContent = original;
+      });
     });
 
     formContato.addEventListener('input', function (event) {

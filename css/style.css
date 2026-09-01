@@ -1224,13 +1224,6 @@ button:focus-visible {
 .contact-icon svg, .contact-highlight-icon svg { color: inherit; }
 .contact-highlight .contact-highlight-icon { color: #fff; }
 
-.form-nota {
-  margin-top: 16px;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  color: var(--texto-suave);
-}
-
 /* ============================================================
    Footer
    ============================================================ */
